@@ -35,3 +35,8 @@ _자가학습이 자동 누적됩니다. 충돌 시 메모리 위계에서 가�
 - **구조:** 4개 KST 슬롯을 UTC cron으로, TZ=Asia/Seoul, threads_poster --due, 발행 후 state.json 재커밋(중복방지). 토큰은 GH Secrets(저장소 비노출).
 - **제약:** 예약은 기본 브랜치(main)에서만 실행 → main 병합 필요. cron 수분 지연 가능. 토큰 ~60일 만료.
 - **근거:** .github/workflows/threads-autopost.yml, sessions 최신.
+
+## 2026-07-10 (추가) — 발행 자동화: 예약 앱 노선 채택(사용자 선택)
+- **결정:** 사용자가 Meta 개발자 토큰 설정에서 막힘 → 비개발자용 '예약 앱'(Buffer/Publer/Metricool) 노선 채택. 앱에 오늘살림 쓰레드 로그인만으로 자동 발행.
+- **산출물:** scheduler_upload/ (28개 예약 CSV·복붙 스케줄표·시작 가이드). CSV 시작 2026-07-13 07:30~07-19 21:00.
+- **비고:** GitHub Actions/API 파이프라인(automation/)은 그대로 보존 — 추후 원하면 전환 가능.
