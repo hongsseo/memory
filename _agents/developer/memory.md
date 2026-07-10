@@ -11,3 +11,5 @@ _Developer 에이전트만 읽고 쓰는 개인 노트. 학습·교훈·자주 �
 - [2026-07-10] Threads 발행 자동화 파이프라인 구축: posts.json(28개 큐) + threads_poster.py(공식 API 2단계·슬롯매핑·state 중복방지·dry-run) + 크론 가이드. dry-run 검증 완료. → automation/
 
 - [2026-07-10] 기기 없는 무인 발행: GitHub Actions 워크플로(KST 4슬롯 크론·TZ·--due·state.json 재커밋 중복방지). 토큰은 GH Secrets. cron 환산·YAML 검증. → .github/workflows/threads-autopost.yml
+
+- [2026-07-10] Threads 토큰 관문 해소: TOKEN_발급가이드.md(클릭순서) + get_token.py(짧은→긴 토큰 변환·User ID 조회·갱신, URL구성 검증). 앱 로그인≠API토큰 구분 안내. → automation/
