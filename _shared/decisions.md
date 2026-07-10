@@ -29,3 +29,9 @@ _자가학습이 자동 누적됩니다. 충돌 시 메모리 위계에서 가�
 - **검증:** dry-run으로 API 호출·슬롯매핑·--due·중복방지 확인.
 - **다음:** 쿠팡 Deep Link API로 상품글 링크 자동생성, 발행 후 텔레그램 푸시.
 - **근거 산출물:** automation/ (posts.json·threads_poster.py·README·.env.example)
+
+## 2026-07-10 (추가) — 무인 발행은 GitHub Actions로
+- **결정:** 기기(패드) 의존 대신 GitHub Actions 크론으로 서버가 대신 발행. 패드는 백그라운드 크론 불가하므로 부적합.
+- **구조:** 4개 KST 슬롯을 UTC cron으로, TZ=Asia/Seoul, threads_poster --due, 발행 후 state.json 재커밋(중복방지). 토큰은 GH Secrets(저장소 비노출).
+- **제약:** 예약은 기본 브랜치(main)에서만 실행 → main 병합 필요. cron 수분 지연 가능. 토큰 ~60일 만료.
+- **근거:** .github/workflows/threads-autopost.yml, sessions 최신.

@@ -57,8 +57,31 @@ python3 threads_poster.py --due          # 지금 슬롯에 해당하는 오늘 
 → 이제 매일 4번, 지정 시각에 오늘 슬롯 글이 자동으로 올라갑니다.
 → 2주차부터는 `posts.json`에 글만 추가하고 `THREADS_WEEK_START`만 바꾸면 됩니다.
 
+## 6) 기기 없이 무인 운영 (권장) — GitHub Actions ⭐
+사장님 패드·컴퓨터가 **꺼져 있어도** 깃허브 서버가 대신 발행합니다.
+워크플로 파일은 이미 있음: `.github/workflows/threads-autopost.yml`
+
+세팅(최초 1회, GitHub 웹에서):
+1. 저장소 → **Settings → Secrets and variables → Actions**
+2. **Secrets** 탭 → New repository secret 로 2개 등록
+   - `THREADS_USER_ID` = 숫자 유저ID
+   - `THREADS_ACCESS_TOKEN` = long-lived 토큰
+3. **Variables** 탭 → New variable 로 1개 등록
+   - `THREADS_WEEK_START` = `2026-07-13` (1일차 월요일)
+4. 이 워크플로를 **기본 브랜치(main)에 병합** ← 예약 실행은 main에서만 켜짐
+5. (테스트) 저장소 → **Actions 탭 → "오늘살림 Threads 자동발행" → Run workflow → dry_run=true**
+
+→ 이후 매일 07:30/12:30/18:00/21:00(KST)에 자동 발행. 발행 이력은 `state.json`에
+   자동 커밋되어 중복 발행을 막습니다. 사장님은 아무것도 안 켜도 됩니다.
+
+주의:
+- 토큰은 **절대 코드/채팅에 붙이지 말고** GitHub Secrets에만 넣으세요(암호화 저장).
+- GitHub cron은 몇 분 지연될 수 있음(정확 시각 보장 X) — 발행엔 문제 없음.
+- long-lived 토큰은 만료(약 60일)되므로 갱신 필요. 갱신 자동화는 다음 단계.
+
 ## 파일
 - `posts.json` — 발행 큐(1주차 28개). `day`/`slot`/`text`/`product`.
+- `.github/workflows/threads-autopost.yml` — 기기 없는 무인 발행(크론).
 - `threads_poster.py` — 발행기(2단계 API: 컨테이너 생성 → 게시, 슬롯 매핑, 중복 방지).
 - `state.json` — 발행 이력(자동 생성, git 제외).
 - `.env` — 토큰(git 제외).

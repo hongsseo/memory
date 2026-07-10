@@ -1,0 +1,67 @@
+name: 오늘살림 Threads 자동발행
+
+# 깃허브 서버가 정해진 시각에 대신 발행합니다. (사장님 기기가 꺼져 있어도 됨)
+# ⚠️ cron 시각은 UTC 기준. 아래는 한국시간(KST=UTC+9)으로 환산한 값입니다.
+#    07:30 KST = 22:30 UTC(전날) / 12:30 KST = 03:30 UTC
+#    18:00 KST = 09:00 UTC        / 21:00 KST = 12:00 UTC
+# ⚠️ GitHub 예약(cron)은 '기본 브랜치(main)'에서만 자동 실행됩니다 → 이 파일을 main에 병합해야 켜집니다.
+# ⚠️ GitHub cron은 몇 분 지연될 수 있습니다(정확 시각 보장 X). 발행 슬롯 특성상 문제 없음.
+
+on:
+  schedule:
+    - cron: "30 22 * * *"   # 07:30 KST
+    - cron: "30 3  * * *"   # 12:30 KST
+    - cron: "0  9  * * *"   # 18:00 KST
+    - cron: "0  12 * * *"   # 21:00 KST
+  workflow_dispatch:         # 수동 실행 버튼(테스트용)
+    inputs:
+      dry_run:
+        description: "실제 발행 없이 미리보기(true/false)"
+        default: "false"
+
+permissions:
+  contents: write            # 발행 이력(state.json)을 저장소에 다시 커밋해 중복발행 방지
+
+concurrency:
+  group: threads-autopost    # 슬롯이 겹쳐도 동시에 두 번 안 돌게
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Seoul         # 발행기의 슬롯 판정을 한국시간 기준으로
+      THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+      THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+      THREADS_WEEK_START: ${{ vars.THREADS_WEEK_START }}
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v4
+
+      - name: 파이썬 준비
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 발행 실행
+        working-directory: automation
+        run: |
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            python3 threads_poster.py --dry-run --due
+          else
+            python3 threads_poster.py --due
+          fi
+
+      - name: 발행 이력 커밋(중복방지용)
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          cd "$GITHUB_WORKSPACE"
+          if ! git diff --quiet -- automation/state.json 2>/dev/null; then
+            git config user.name  "oneulsalim-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add automation/state.json
+            git commit -m "chore(autopost): 발행 이력 업데이트 [skip ci]"
+            git push
+          else
+            echo "state.json 변경 없음 — 커밋 생략"
+          fi
