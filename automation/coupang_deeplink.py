@@ -19,6 +19,23 @@
 """
 import argparse, hashlib, hmac, json, os, ssl, sys, time, urllib.request, datetime
 
+
+def load_dotenv():
+    """스크립트 폴더의 .env 를 읽어 환경변수로 로드 (외부 패키지 불필요, 윈도우 호환)."""
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
+    if not os.path.exists(path):
+        return
+    with open(path, encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            k, v = line.split("=", 1)
+            os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+
+
+load_dotenv()
+
 DOMAIN = "https://api-gateway.coupang.com"
 PATH = "/v2/providers/affiliate_open_api/apis/openapi/v1/deeplink"
 METHOD = "POST"
