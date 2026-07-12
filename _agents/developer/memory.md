@@ -13,3 +13,5 @@ _Developer 에이전트만 읽고 쓰는 개인 노트. 학습·교훈·자주 �
 - [2026-07-10] 기기 없는 무인 발행: GitHub Actions 워크플로(KST 4슬롯 크론·TZ·--due·state.json 재커밋 중복방지). 토큰은 GH Secrets. cron 환산·YAML 검증. → .github/workflows/threads-autopost.yml
 
 - [2026-07-10] Threads 토큰 관문 해소: TOKEN_발급가이드.md(클릭순서) + get_token.py(짧은→긴 토큰 변환·User ID 조회·갱신, URL구성 검증). 앱 로그인≠API토큰 구분 안내. → automation/
+
+- [2026-07-12] 쿠팡 딥링크 자동생성기: coupang_deeplink.py(Deep Link API·CEA HMAC 서명·URL 일괄→제휴링크·dry-run). HMAC 손계산 대조 검증. + 발급/사용 가이드. → automation/

@@ -13,3 +13,5 @@ _tmp/
 automation/.env
 automation/run.log
 automation/__pycache__/
+automation/links.tsv
+automation/urls.txt
