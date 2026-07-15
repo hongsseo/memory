@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""테라코타+머스타드 조합 2안."""
+"""크림 배경 + 2색 조합 여러 개 비교."""
 import os, fitz
 from reportlab.lib import colors
 from reportlab.pdfgen import canvas
@@ -10,8 +10,7 @@ pdfmetrics.registerFont(UnicodeCIDFont("HYSMyeongJo-Medium"))
 GO,MJ="HYGothic-Medium","HYSMyeongJo-Medium"
 C=colors.HexColor
 CREAM=C("#F4EEE1"); INK=C("#2A2E26"); MUTE=C("#9A9483"); LINE=C("#DED6C4"); BODY=C("#5A5F52")
-TERRA=C("#BA6A3C"); TERRAT=C("#FBF3E7")
-MUST=C("#CB9A22");  MUSTT=C("#2A2410")
+LT=C("#FBF3E7")  # 박스 위 밝은 글씨
 W,H=1080,1350
 def tw(t,f,s): return pdfmetrics.stringWidth(t,f,s)
 out="/home/user/memory/products/cards"; os.makedirs(out,exist_ok=True)
@@ -36,7 +35,14 @@ def cover(c, BRAND, TAGBG, TAGT, BOXBG, BOXT, DOT):
 def render(fn,*a):
     p=f"{out}/_t.pdf"; c=canvas.Canvas(p,pagesize=(W,H)); cover(c,*a); c.showPage(); c.save()
     d=fitz.open(p); d[0].get_pixmap(dpi=72).save(fn); d.close(); os.remove(p); print("saved",fn)
-# A: 테라코타 메인(박스·브랜드) + 머스타드 서브(태그)
-render(f"{out}/A_테라메인.png", TERRA, MUST, MUSTT, TERRA, TERRAT, TERRA)
-# B: 머스타드 메인(박스) + 테라코타 서브(태그·브랜드)
-render(f"{out}/B_머스타드메인.png", TERRA, TERRA, TERRAT, MUST, MUSTT, MUST)
+
+TERRA=C("#BA6A3C"); MUST=C("#CB9A22"); NAVY=C("#324B6E"); FOREST=C("#3F6146")
+BURG=C("#8B3A46"); TEAL=C("#2E6E6A"); CORAL=C("#D9725F"); PLUM=C("#6E4A6B")
+
+# (파일, BRAND, TAGBG, TAGT, BOXBG, BOXT, DOT)
+render(f"{out}/1_테라x머스타드.png", TERRA, MUST, C("#2A2410"), TERRA, LT, TERRA)
+render(f"{out}/2_네이비x머스타드.png", NAVY, MUST, C("#2A2410"), NAVY, LT, NAVY)
+render(f"{out}/3_포레스트x테라.png", FOREST, TERRA, LT, FOREST, LT, FOREST)
+render(f"{out}/4_버건디x머스타드.png", BURG, MUST, C("#2A2410"), BURG, LT, BURG)
+render(f"{out}/5_틸x코랄.png", TEAL, CORAL, LT, TEAL, LT, TEAL)
+render(f"{out}/6_플럼x머스타드.png", PLUM, MUST, C("#2A2410"), PLUM, LT, PLUM)
