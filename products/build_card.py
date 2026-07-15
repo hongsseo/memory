@@ -1,74 +1,107 @@
 # -*- coding: utf-8 -*-
-"""오늘살림 인스타 카드 v2 — 스크롤 멈추는 디자인. reportlab→PNG."""
+"""오늘살림 인스타 캐러셀 v3 — 볼드 임팩트(검정+네온), 세로 1080x1350."""
 import os, fitz
 from reportlab.lib import colors
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.cidfonts import UnicodeCIDFont
-
 pdfmetrics.registerFont(UnicodeCIDFont("HYGothic-Medium"))
 pdfmetrics.registerFont(UnicodeCIDFont("HYSMyeongJo-Medium"))
 GO, MJ = "HYGothic-Medium", "HYSMyeongJo-Medium"
 
-INK  = colors.HexColor("#1F2A24")
-SAGE = colors.HexColor("#5E8468")
-SAGED= colors.HexColor("#3D5C48")
-SAGEL= colors.HexColor("#E8F0EA")
-CREAM= colors.HexColor("#F8F6F0")
-WHITE= colors.white
-GOLD = colors.HexColor("#C8792E")
-BODY = colors.HexColor("#41504A")
-LINE = colors.HexColor("#DCDCD2")
-S = 1080
+BG    = colors.HexColor("#171A18")   # 차콜 블랙
+CARD  = colors.HexColor("#21251F")
+NEON  = colors.HexColor("#C8F03C")   # 네온 라임
+NEOND = colors.HexColor("#1A1D14")   # 네온 위 글씨(어둡게)
+WHITE = colors.HexColor("#F4F6F1")
+MUTE  = colors.HexColor("#9BA69A")
+W, H = 1080, 1350
 
-def tw(t, f, s): return pdfmetrics.stringWidth(t, f, s)
+def tw(t,f,s): return pdfmetrics.stringWidth(t,f,s)
+def wrap(t,f,s,mw):
+    out,cur=[],""
+    for w in t.split(" "):
+        if tw((cur+" "+w).strip(),f,s)<=mw: cur=(cur+" "+w).strip()
+        else:
+            if cur: out.append(cur)
+            cur=w
+    if cur: out.append(cur)
+    return out
 
-def make(num, pre, key, post, points, cta, out):
-    c = canvas.Canvas(out, pagesize=(S, S))
-    c.setFillColor(CREAM); c.rect(0, 0, S, S, fill=1, stroke=0)
-    c.setFillColor(SAGED); c.rect(0, S-140, S, 140, fill=1, stroke=0)
-    c.setFillColor(WHITE); c.setFont(GO, 34); c.drawString(70, S-90, "오늘살림")
-    c.setFillColor(SAGEL); c.setFont(MJ, 21); c.drawRightString(S-70, S-88, "계산해주는 살림")
-    c.setFillColor(GOLD); c.roundRect(70, S-240, 155, 62, 31, fill=1, stroke=0)
-    c.setFillColor(WHITE); c.setFont(GO, 26); c.drawCentredString(147, S-224, "살림팁 %d" % num)
-    y = S-330
-    c.setFillColor(INK); c.setFont(GO, 66); c.drawString(70, y, pre); y -= 92
-    kw = tw(key, GO, 78)
-    c.setFillColor(GOLD); c.roundRect(64, y-16, kw+28, 92, 12, fill=1, stroke=0)
-    c.setFillColor(WHITE); c.setFont(GO, 78); c.drawString(78, y, key); y -= 92
-    c.setFillColor(INK); c.setFont(GO, 66); c.drawString(70, y, post)
-    box_top = y - 55
-    ph = 60*len(points) + 70
-    c.setFillColor(WHITE); c.roundRect(60, box_top-ph, S-120, ph, 24, fill=1, stroke=0)
-    c.setStrokeColor(LINE); c.setLineWidth(1.5); c.roundRect(60, box_top-ph, S-120, ph, 24, fill=0, stroke=1)
-    py = box_top - 55
-    for p in points:
-        c.setStrokeColor(SAGE); c.setLineWidth(5)
-        c.line(100, py+8, 112, py-4); c.line(112, py-4, 134, py+22)
-        c.setFillColor(BODY); c.setFont(MJ, 33); c.drawString(155, py, p); py -= 60
-    c.setFillColor(SAGE); c.rect(0, 0, S, 150, fill=1, stroke=0)
-    c.setFillColor(WHITE); c.rect(78, 52, 40, 52, fill=1, stroke=0)
-    pth=c.beginPath(); pth.moveTo(78,52); pth.lineTo(98,70); pth.lineTo(118,52); pth.close()
-    c.setFillColor(SAGE); c.drawPath(pth, fill=1, stroke=0)
-    c.setFillColor(WHITE); c.setFont(GO, 38); c.drawString(140, 78, cta)
-    c.setFillColor(SAGEL); c.setFont(MJ, 23); c.drawString(140, 42, "프로필 링크 → 살림템 모음에서 확인")
-    c.showPage(); c.save()
+def base(c):
+    c.setFillColor(BG); c.rect(0,0,W,H,fill=1,stroke=0)
+    c.setFillColor(NEON); c.setFont(GO,30); c.drawString(70,H-95,"오늘살림")
+    c.setFillColor(MUTE); c.setFont(MJ,22); c.drawRightString(W-70,H-93,"계산해주는 살림")
+    c.setStrokeColor(CARD); c.setLineWidth(2); c.line(70,H-125,W-70,H-125)
 
-CARDS = [
- (1,"이거 모르면","1년에 12만원","그냥 샙니다",
-  ["안 쓰는 셋톱박스・전자레인지 대기전력","코드만 뽑아도 가구당 월 1만원 절약","'차단 멀티탭'이면 발로 끄면 끝"],
-  "저장하고 오늘부터"),
- (2,"설거지 시간","반으로","줄이는 순서",
-  ["유리컵 → 수저 → 그릇 → 기름기 순서로","기름때 마지막에 몰면 물・세제 절약","물 받아 '담가두기'가 핵심"],
-  "저장 필수, 오늘 저녁부터"),
- (3,"냉장고 3칸으로","일주일","버티는 법",
-  ["냉동실 '먼저 먹기' 칸 지정하기","장보기 전 냉장고 사진 찍기","주 1회 '냉파데이' → 장보기 30% 감소"],
-  "냉파 같이 할 사람 저장"),
-]
-os.makedirs("/home/user/memory/products/cards", exist_ok=True)
-for num,pre,key,post,pts,cta in CARDS:
-    pdf="/home/user/memory/products/cards/_c%d.pdf"%num
-    make(num,pre,key,post,pts,cta,pdf)
-    d=fitz.open(pdf); pix=d[0].get_pixmap(dpi=72)
-    png="/home/user/memory/products/cards/오늘살림_카드%d.png"%num
-    pix.save(png); d.close(); os.remove(pdf); print("saved",png)
+def footer(c, page, total):
+    c.setFillColor(MUTE); c.setFont(MJ,20)
+    c.drawString(70,55,"@today.lim")
+    # 페이지 도트
+    for i in range(total):
+        x=W-70-(total-1-i)*30
+        c.setFillColor(NEON if i==page-1 else CARD); c.circle(x,62,7,fill=1,stroke=0)
+
+def cover(c, tag, l1, key, l3, bottom):
+    base(c)
+    # 태그
+    c.setFillColor(NEON); c.roundRect(70,H-235,190,60,30,fill=1,stroke=0)
+    c.setFillColor(NEOND); c.setFont(GO,26); c.drawCentredString(165,H-219,tag)
+    y=H-380
+    c.setFillColor(WHITE); c.setFont(GO,96); c.drawString(70,y,l1); y-=130
+    kw=tw(key,GO,112)
+    c.setFillColor(NEON); c.roundRect(60,y-22,kw+40,132,14,fill=1,stroke=0)
+    c.setFillColor(NEOND); c.setFont(GO,112); c.drawString(80,y,key); y-=132
+    c.setFillColor(WHITE); c.setFont(GO,96); c.drawString(70,y,l3)
+    # 하단 저장 유도
+    c.setFillColor(NEON); c.setFont(GO,34); c.drawString(70,180,bottom)
+    c.setFillColor(MUTE); c.setFont(MJ,26); c.drawString(70,132,"넘겨서 3초 만에 확인  →")
+    footer(c,1,4)
+
+def content(c, no, head, body, hl=None):
+    base(c)
+    c.setFillColor(NEON); c.setFont(GO,72); c.drawString(70,H-320,no)
+    y=H-430
+    c.setFillColor(WHITE)
+    for ln in wrap(head,GO,62,W-140):
+        c.setFont(GO,62); c.drawString(70,y,ln); y-=82
+    y-=30
+    c.setStrokeColor(NEON); c.setLineWidth(4); c.line(70,y,190,y); y-=70
+    c.setFillColor(MUTE)
+    for ln in wrap(body,MJ,38,W-140):
+        c.setFont(MJ,38); c.drawString(70,y,ln); y-=56
+    if hl:
+        y-=30
+        kw=tw(hl,GO,54)
+        c.setFillColor(NEON); c.roundRect(66,y-18,kw+36,80,12,fill=1,stroke=0)
+        c.setFillColor(NEOND); c.setFont(GO,54); c.drawString(84,y,hl)
+    footer(c,no_i(no),4)
+
+def no_i(no): return {"01":2,"02":3}.get(no,2)
+
+def cta(c):
+    base(c)
+    y=H-430
+    c.setFillColor(WHITE); c.setFont(GO,76); c.drawString(70,y,"오늘 딱"); y-=128
+    kw=tw("하나만",GO,110)
+    c.setFillColor(NEON); c.roundRect(60,y-22,kw+40,128,14,fill=1,stroke=0)
+    c.setFillColor(NEOND); c.setFont(GO,110); c.drawString(80,y,"하나만"); y-=128
+    c.setFillColor(WHITE); c.setFont(GO,76); c.drawString(70,y,"해보세요"); y-=150
+    # 저장/팔로우 박스
+    c.setFillColor(CARD); c.roundRect(60,y-210,W-120,250,20,fill=1,stroke=0)
+    c.setFillColor(NEON); c.setFont(GO,40); c.drawString(100,y-70,"저장 · 팔로우")
+    c.setFillColor(WHITE); c.setFont(MJ,34); c.drawString(100,y-130,"프로필 링크 → 살림템 모음")
+    c.setFillColor(MUTE); c.setFont(MJ,28); c.drawString(100,y-180,"매일 아침 새 살림팁 올라와요")
+    footer(c,4,4)
+
+# ── 전기세 캐러셀
+out="/home/user/memory/products/cards"
+os.makedirs(out,exist_ok=True)
+def render(fn, drawfn):
+    pdf=f"{out}/_t.pdf"; c=canvas.Canvas(pdf,pagesize=(W,H)); drawfn(c); c.showPage(); c.save()
+    d=fitz.open(pdf); d[0].get_pixmap(dpi=72).save(fn); d.close(); os.remove(pdf); print("saved",fn)
+
+render(f"{out}/전기세_1표지.png", lambda c: cover(c,"살림팁","전기세","1년 12만원","그냥 샙니다","저장하고 오늘부터 막기"))
+render(f"{out}/전기세_2원인.png", lambda c: content(c,"01","안 쓰는데 켜져 있어요","TV·셋톱박스·충전기는 콘센트에 꽂혀만 있어도 전기를 먹어요. 이게 '대기전력'.","가구당 월 1만원"))
+render(f"{out}/전기세_3해결.png", lambda c: content(c,"02","멀티탭 하나면 끝","개별 스위치 멀티탭에 꽂고, 안 쓸 땐 발로 딱 끄기. 습관 없이도 자동 절약.","연 12만원↓"))
+render(f"{out}/전기세_4CTA.png", cta)
