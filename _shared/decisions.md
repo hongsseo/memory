@@ -83,6 +83,14 @@ _자가학습이 자동 누적됩니다. 충돌 시 메모리 위계에서 가�
 - **원리(사용자 통찰):** 색은 매번 바뀌어도 레이아웃 고정이면 한 브랜드로 인식 + 피드 생기 + 색으로 주제 구분.
 - **생성기:** products/build_card.py v5(PALETTE 딕셔너리). 전기세(네이비) 캐러셀 완성.
 
+## 2026-07-19 — 이미지 공개 호스팅 블로커 해결(GitHub raw + SHA 고정)
+- **발견:** `hongsseo/memory` 저장소가 **공개(public)** — 나머지(blueseyo-hq·youtube-jp-auto·quote-app)는 비공개. Vultr SSH 불필요.
+- **결정:** 카드 PNG를 이 공개 저장소 `products/cards/`에 커밋 → `raw.githubusercontent.com/hongsseo/memory/<SHA>/products/cards`를 `publicMediaBase`로 사용. 커밋 SHA 고정 = URL 불변.
+- **검증:** raw URL 실측 `HTTP 200 · image/png · 34,694B`. poster --dry로 image_url 조립 정상 확인.
+- **파일명:** 영문 통일 card1-1.png~card5-4.png (한글 인코딩 리스크 제거). queue.json·config.example.json 반영.
+- **남은 유일 블로커:** 오늘살림 계정 Meta 토큰(IG instagram_content_publish + Threads threads_content_publish) — 사용자만 발급 가능(계정 소유·토큰은 채팅 노출 금지).
+- **근거:** autopost/config.example.json·README, products/cards/card*.png.
+
 ## 2026-07-15 (추가) — 인스타+쓰레드 자동 포스터 구축(BlueSeyo 패턴 복제)
 - **결정:** 사용자가 BlueSeyo 자동포스터 스펙 문서 제공 → 오늘살림용 IG+Threads 자동 게시기 구축(autopost/).
 - **구조:** poster.cjs — IG 캐러셀(자식 is_carousel_item→부모 CAROUSEL→상태대기 FINISHED→media_publish) + Threads 캐러셀(자식 IMAGE→부모 CAROUSEL→threads_publish). 재시도(isTransient), 플랫폼별 posted.json 이력, --dry.

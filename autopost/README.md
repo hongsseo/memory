@@ -22,12 +22,17 @@ BlueSeyo의 `instagram-poster.cjs` 패턴을 복제해 **이미지 카드 + 캡�
 
 ## 선행 세팅
 
-### 1) 이미지 공개 호스팅
-`products/cards/`의 카드 PNG들을 공개 URL로 접근 가능하게 올리세요.
-`config.json`의 `publicMediaBase` = 그 폴더 URL. (예: `https://cdn.내도메인/오늘살림`)
-→ 그러면 `publicMediaBase/1전기세_1표지.png` 로 접근돼야 함.
-- **BlueSeyo가 이미 쓰는 호스팅을 재사용**하는 게 제일 빠름(같은 VPS/S3/R2에 `오늘살림/` 폴더 추가).
-- 파일명이 한글이라 URL 인코딩됨 → 문제 시 파일명을 영문으로 바꾸고 queue.json도 맞추면 확실.
+### 1) 이미지 공개 호스팅 — ✅ 완료 (해결됨)
+카드 PNG는 **공개 저장소 `hongsseo/memory`** 에 커밋돼 있고,
+`config.example.json`의 `publicMediaBase`가 이미 **검증된 공개 URL**로 박혀 있습니다:
+```
+https://raw.githubusercontent.com/hongsseo/memory/<커밋SHA>/products/cards
+```
+- 파일명은 영문(ASCII)로 통일: `card1-1.png` … `card5-4.png` (URL 스크래핑 안정).
+- 커밋 SHA로 고정 → 이후 커밋이 쌓여도 이 URL은 불변(인스타가 항상 같은 이미지 획득).
+- 실측 검증: `raw.githubusercontent.com` → `HTTP 200 · image/png · 34,694 bytes`.
+- 카드를 새로 만들면: `products/cards/`에 커밋 → 새 SHA로 `publicMediaBase`만 갱신.
+- (대안) 같은 저장소를 jsDelivr로도 서빙 가능: `https://cdn.jsdelivr.net/gh/hongsseo/memory@<SHA>/products/cards`
 
 ### 2) Meta 토큰 (진짜 블로커)
 같은 Meta 앱에서 IG·Threads 둘 다 발급:

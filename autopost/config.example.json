@@ -1,6 +1,6 @@
 {
   "apiVersion": "v21.0",
-  "publicMediaBase": "https://여기에-공개-이미지-호스팅-주소/오늘살림",
+  "publicMediaBase": "https://raw.githubusercontent.com/hongsseo/memory/cc9410cd7fb43411df95e94c51015227a6b77694/products/cards",
   "ig":      { "accessToken": "IG_장기토큰", "igUserId": "IG_사용자ID(숫자)" },
   "threads": { "accessToken": "TH_장기토큰", "threadsUserId": "TH_사용자ID(숫자)" }
 }
