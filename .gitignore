@@ -15,3 +15,8 @@ automation/run.log
 automation/__pycache__/
 automation/links.tsv
 automation/urls.txt
+
+# 자동 포스터 시크릿·상태
+autopost/config.json
+autopost/posted.json
+autopost/run.log

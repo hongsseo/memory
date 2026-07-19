@@ -82,3 +82,11 @@ _자가학습이 자동 누적됩니다. 충돌 시 메모리 위계에서 가�
 - **강조색:** 주제별 로테이션(팔레트). 절약=네이비(기본) / 냉파=포레스트 / 청소=테라코타 / 살림템=머스타드 / 공감=버건디. 태그는 머스타드 고정.
 - **원리(사용자 통찰):** 색은 매번 바뀌어도 레이아웃 고정이면 한 브랜드로 인식 + 피드 생기 + 색으로 주제 구분.
 - **생성기:** products/build_card.py v5(PALETTE 딕셔너리). 전기세(네이비) 캐러셀 완성.
+
+## 2026-07-15 (추가) — 인스타+쓰레드 자동 포스터 구축(BlueSeyo 패턴 복제)
+- **결정:** 사용자가 BlueSeyo 자동포스터 스펙 문서 제공 → 오늘살림용 IG+Threads 자동 게시기 구축(autopost/).
+- **구조:** poster.cjs — IG 캐러셀(자식 is_carousel_item→부모 CAROUSEL→상태대기 FINISHED→media_publish) + Threads 캐러셀(자식 IMAGE→부모 CAROUSEL→threads_publish). 재시도(isTransient), 플랫폼별 posted.json 이력, --dry.
+- **규정:** 쿠팡 고지문 하드코딩(DISCLOSURE, 누락불가). 쿠팡링크는 Threads 본문에만(클릭가능), 인스타는 프로필 유도.
+- **선행(블로커):** ①이미지 공개 호스팅(publicMediaBase, BlueSeyo 호스팅 재사용 권장) ②Meta 토큰 IG(instagram_content_publish)+Threads(threads_content_publish) 장기토큰(BlueSeyo Meta앱 재사용 권장). refresh-token.cjs로 60일 갱신.
+- **검증:** dry-run으로 IG·Threads 3단계 요청 구조 확인. IG 캐러셀 API 최신 문서 대조.
+- **산출물:** autopost/ (poster.cjs·queue.json·config.example.json·refresh-token.cjs·run-daily.cmd·README).
