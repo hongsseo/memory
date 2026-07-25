@@ -35,11 +35,16 @@ function saveState() { fs.writeFileSync(STATE_PATH, JSON.stringify(STATE, null, 
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 const imgUrl = (name) => CFG.publicMediaBase.replace(/\/$/, "") + "/" + encodeURIComponent(name);
 
-// 캡션 조립 — 고지문은 항상 강제 삽입(누락 불가)
+// 캡션 조립
+//  - 제휴(대가성) 글: 공정위 고지문을 반드시 '최상단'에 배치(계정 정지 예방 — 영상 규칙)
+//  - 순수 정보/공감글(coupangLink 없음): 고지문 불필요 → 넣지 않음
+//  - 쿠팡 링크는 Threads 본문에만(클릭 가능), 인스타는 프로필 유도
 function captionFor(post, platform) {
   let cap = post.caption.trim();
-  if (platform === "threads" && post.coupangLink) cap += `\n\n👉 ${post.coupangLink}`;
-  cap += `\n\n${DISCLOSURE}`;
+  if (post.coupangLink) {
+    cap = `${DISCLOSURE}\n\n${cap}`;                 // 고지문 최상단
+    if (platform === "threads") cap += `\n\n👉 ${post.coupangLink}`;
+  }
   return cap;
 }
 
