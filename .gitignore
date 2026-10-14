@@ -21,3 +21,9 @@ autopost/config.json
 autopost/posted.json
 autopost/run.log
 shorts/out/
+shorts/fonts/
+shorts/.tmp_frames/
+autovideo/config.json
+autovideo/posted.json
+autovideo/posted-youtube.json
+autovideo/node_modules/

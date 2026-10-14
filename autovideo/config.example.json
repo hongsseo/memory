@@ -1,0 +1,13 @@
+{
+  "apiVersion": "v21.0",
+  "publicVideoBase": "https://raw.githubusercontent.com/hongsseo/memory/BRANCH_OR_SHA/shorts/videos",
+  "localVideoDir": "../shorts/out",
+  "ig":      { "accessToken": "IG_장기토큰", "igUserId": "IG_사용자ID(숫자)" },
+  "threads": { "accessToken": "TH_장기토큰", "threadsUserId": "TH_사용자ID(숫자)" },
+  "youtube": {
+    "clientId": "YOUTUBE_OAUTH_CLIENT_ID",
+    "clientSecret": "YOUTUBE_OAUTH_CLIENT_SECRET",
+    "refreshToken": "get-youtube-token.cjs로_발급",
+    "privacy": "public"
+  }
+}

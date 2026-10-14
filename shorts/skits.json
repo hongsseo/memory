@@ -1,0 +1,64 @@
+{
+  "_note": "오늘살림 상황극 숏츠 대본. 비트별 dur(초)·bg(색)·anim(pop/slideup/shake)·sfx(pop/pop_soft/boing/ding, 생략시 anim으로 자동)·lines[[텍스트,폰트,크기,색]]. 폰트: BLACK(초굵)·JUA(둥근)·DOH(단단)·GAEGU(손글씨). 색: CREAM/NAVY/RED/YEL/GREEN/INK/WHITE/GRAY/BLUE_LT. 화면 텍스트엔 이모지 금지(렌더 깨짐). product=true면 쿠팡 고지 인트로 자동.",
+  "skits": {
+    "1전기세": {
+      "product": false,
+      "beats": [
+        {"dur":2.6,"bg":"YEL","anim":"pop","lines":[["전기세 고지서 받고","DOH",86,"INK"],["기절한 썰 푼다","BLACK",128,"NAVY"]]},
+        {"dur":2.4,"bg":"CREAM","anim":"slideup","lines":[["나:","GAEGU",80,"GRAY"],["에어컨도 아끼고","JUA",90,"INK"],["불도 꼬박 껐는데…","JUA",90,"INK"]]},
+        {"dur":3.0,"bg":"RED","anim":"shake","lines":[["근데 왜","DOH",80,"WHITE"],["12만원???","BLACK",190,"WHITE"]]},
+        {"dur":2.6,"bg":"NAVY","anim":"pop","lines":[["범인은","JUA",84,"BLUE_LT"],["따로 있었다","BLACK",128,"WHITE"]]},
+        {"dur":3.8,"bg":"CREAM","anim":"slideup","lines":[["안 쓰는데 꽂혀만 있던","JUA",70,"INK"],["TV·셋톱·충전기","BLACK",104,"NAVY"],["= 대기전력","DOH",92,"RED"]]},
+        {"dur":3.4,"bg":"GREEN","anim":"pop","sfx":"ding","lines":[["멀티탭 스위치 딸깍","JUA",84,"WHITE"],["연 12만원 세이브","BLACK",122,"YEL"]]},
+        {"dur":2.8,"bg":"NAVY","anim":"pop","lines":[["오늘 집 가서","JUA",84,"WHITE"],["코드부터 뽑자","BLACK",130,"YEL"]]}
+      ]
+    },
+    "2설거지": {
+      "product": false,
+      "beats": [
+        {"dur":2.6,"bg":"YEL","anim":"pop","lines":[["설거지 1시간 걸리던 내가","DOH",62,"INK"],["30분으로 줄인 썰","BLACK",112,"NAVY"]]},
+        {"dur":2.6,"bg":"CREAM","anim":"slideup","lines":[["예전 나:","GAEGU",76,"GRAY"],["아무거나 막 씻음","JUA",90,"INK"],["기름 그릇부터 ㅠ","JUA",84,"INK"]]},
+        {"dur":2.6,"bg":"RED","anim":"shake","lines":[["그래서","DOH",80,"WHITE"],["물·세제 2배 낭비","BLACK",110,"WHITE"]]},
+        {"dur":2.2,"bg":"NAVY","anim":"pop","lines":[["순서만 바꿨다","BLACK",120,"WHITE"]]},
+        {"dur":3.6,"bg":"CREAM","anim":"slideup","lines":[["유리컵 → 수저 → 그릇","BLACK",80,"NAVY"],["→ 기름기 '맨 마지막'","JUA",74,"INK"]]},
+        {"dur":3.0,"bg":"GREEN","anim":"pop","sfx":"ding","lines":[["깨끗한 것부터!","JUA",84,"WHITE"],["시간 반으로 뚝","BLACK",120,"YEL"]]},
+        {"dur":2.6,"bg":"NAVY","anim":"pop","lines":[["오늘 저녁부터","JUA",84,"WHITE"],["바로 적용 ㄱㄱ","BLACK",126,"YEL"]]}
+      ]
+    },
+    "3냉파": {
+      "product": false,
+      "beats": [
+        {"dur":2.6,"bg":"YEL","anim":"pop","lines":[["냉장고 열었다가","DOH",80,"INK"],["2만원 버린 썰","BLACK",120,"NAVY"]]},
+        {"dur":2.6,"bg":"CREAM","anim":"slideup","lines":[["뒤에서 발견된","JUA",84,"INK"],["유통기한 지난 것들…","JUA",78,"RED"]]},
+        {"dur":2.4,"bg":"RED","anim":"shake","lines":[["또","DOH",96,"WHITE"],["돈 버렸다","BLACK",150,"WHITE"]]},
+        {"dur":2.0,"bg":"NAVY","anim":"pop","lines":[["해결법 2개","BLACK",126,"WHITE"]]},
+        {"dur":4.0,"bg":"CREAM","anim":"slideup","lines":[["① '이번 주 먹을 칸' 지정","JUA",60,"INK"],["② 장보기 전 냉장고 찰칵","JUA",60,"INK"]]},
+        {"dur":3.0,"bg":"GREEN","anim":"pop","sfx":"ding","lines":[["중복구매 끝","JUA",86,"WHITE"],["장보기 30% 뚝","BLACK",120,"YEL"]]},
+        {"dur":2.6,"bg":"NAVY","anim":"pop","lines":[["냉파 같이 할 사람","JUA",78,"WHITE"],["저장 ㄱ","BLACK",130,"YEL"]]}
+      ]
+    },
+    "4절수": {
+      "product": true,
+      "beats": [
+        {"dur":2.6,"bg":"YEL","anim":"pop","lines":[["수도세 고지서 보고","DOH",74,"INK"],["샤워기 바꾼 썰","BLACK",116,"NAVY"]]},
+        {"dur":2.6,"bg":"CREAM","anim":"slideup","lines":[["수압 세게 쓰는 거","JUA",84,"INK"],["= 물값 폭탄 ㅠ","JUA",84,"RED"]]},
+        {"dur":2.4,"bg":"NAVY","anim":"pop","lines":[["절수 샤워헤드","BLACK",118,"WHITE"],["써봤더니","JUA",80,"BLUE_LT"]]},
+        {"dur":4.0,"bg":"CREAM","anim":"slideup","lines":[["공기 섞어서","JUA",78,"INK"],["수압 그대로, 물량만 ↓","JUA",68,"NAVY"],["체감 차이 없음","DOH",80,"GREEN"]]},
+        {"dur":3.2,"bg":"GREEN","anim":"pop","sfx":"ding","lines":[["수도세 30% 절약","BLACK",112,"YEL"],["3천원대 본전 금방","JUA",70,"WHITE"]]},
+        {"dur":2.8,"bg":"NAVY","anim":"pop","lines":[["프로필 '살림템 모음'","JUA",72,"WHITE"],["에 링크 있어요","BLACK",104,"YEL"]]}
+      ]
+    },
+    "5구독료": {
+      "product": false,
+      "beats": [
+        {"dur":2.6,"bg":"YEL","anim":"pop","lines":[["통장 털어보다가","DOH",78,"INK"],["충격받은 썰","BLACK",122,"NAVY"]]},
+        {"dur":3.0,"bg":"CREAM","anim":"slideup","lines":[["안 보는 OTT","JUA",88,"INK"],["안 듣는 음원","JUA",88,"INK"],["중복 클라우드…","JUA",88,"INK"]]},
+        {"dur":2.4,"bg":"RED","anim":"shake","lines":[["다 합치니","DOH",80,"WHITE"],["월 3만원","BLACK",150,"WHITE"]]},
+        {"dur":2.4,"bg":"NAVY","anim":"pop","lines":[["1년이면","JUA",84,"BLUE_LT"],["36만원!!","BLACK",150,"WHITE"]]},
+        {"dur":4.2,"bg":"CREAM","anim":"slideup","lines":[["무료체험 종료일만","JUA",78,"INK"],["캘린더에 적어둬도","JUA",78,"INK"],["자동결제 방어 끝","DOH",84,"GREEN"]]},
+        {"dur":2.8,"bg":"GREEN","anim":"pop","sfx":"ding","lines":[["오늘 하나만","JUA",86,"WHITE"],["정리하기","BLACK",128,"YEL"]]},
+        {"dur":2.6,"bg":"NAVY","anim":"pop","lines":[["내 숨은 구독","JUA",80,"WHITE"],["댓글에 고백 ㄱ","BLACK",122,"YEL"]]}
+      ]
+    }
+  }
+}
