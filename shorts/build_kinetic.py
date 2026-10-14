@@ -66,7 +66,7 @@ def ease_out_back(p):
 TAGF=font("JUA",40)
 def render_skit(sid, skit):
     beats=list(skit["beats"])
-    if skit.get("product"): beats=[DISCLOSURE_BEAT]+beats
+    is_product=bool(skit.get("product"))   # 훅 살리려 인트로 대신 상시 띠배너 사용
     # 누적 시간
     t0=0.0
     for b in beats: b["_s"]=t0; b["_e"]=t0+b["dur"]; t0+=b["dur"]
@@ -100,6 +100,12 @@ def render_skit(sid, skit):
         bb=d.textbbox((0,0),tag,font=TAGF)
         tc=(0,0,0,120) if b["bg"] in ("CREAM","YEL","GRAY") else (255,255,255,160)
         d.text(((W-(bb[2]-bb[0]))//2,H-112),tag,font=TAGF,fill=tc)
+        if is_product:   # 상시 유료광고 띠배너(공정위 표시, 영상 내내 노출)
+            bt="유료광고 · 쿠팡파트너스"; bf=font("JUA",34)
+            bb2=d.textbbox((0,0),bt,font=bf); tw=bb2[2]-bb2[0]
+            x0=(W-tw)//2-26; y0=52; x1=(W+tw)//2+26; y1=y0+34+28
+            d.rounded_rectangle([x0,y0,x1,y1],radius=(y1-y0)//2,fill=(0,0,0,120))
+            d.text(((W-tw)//2-bb2[0], y0+16-bb2[1]), bt, font=bf, fill=(255,255,255,235))
         frame.convert("RGB").save(os.path.join(fdir,f"f{i:04d}.png"))
     # 효과음 이벤트
     SFX={"pop":(1200,0.09,0.45),"pop_soft":(1050,0.09,0.4),"boing":(170,0.34,0.6),"ding":(1976,0.55,0.5)}
@@ -128,7 +134,9 @@ def render_skit(sid, skit):
 
 if __name__=="__main__":
     skits=json.load(open(os.path.join(HERE,"skits.json"),encoding="utf-8"))["skits"]
-    print(f"상황극 {len(skits)}개 생성 → {OUT}")
-    for sid,skit in skits.items():
+    ids=[a for a in sys.argv[2:]] if len(sys.argv)>2 else None   # 특정 id만 렌더(선택)
+    todo={k:v for k,v in skits.items() if not ids or k in ids}
+    print(f"상황극 {len(todo)}개 생성 → {OUT}")
+    for sid,skit in todo.items():
         render_skit(sid,skit)
     print("완료.")

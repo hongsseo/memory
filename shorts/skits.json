@@ -45,7 +45,7 @@
         {"dur":2.2,"bg":"NAVY","anim":"pop","lines":[["근데 샤워기만","JUA",80,"BLUE_LT"],["바꿨더니?!","BLACK",128,"WHITE"]]},
         {"dur":3.8,"bg":"CREAM","anim":"slideup","lines":[["수압은 그대로","JUA",80,"INK"],["물값은 30% ↓","BLACK",100,"NAVY"],["체감 차이 0","DOH",84,"GREEN"]]},
         {"dur":2.8,"bg":"GREEN","anim":"pop","sfx":"ding","lines":[["3천원대인데","JUA",80,"WHITE"],["몇 달이면 본전","BLACK",118,"YEL"]]},
-        {"dur":3.0,"bg":"NAVY","anim":"shake","sfx":"ding","lines":[["어떤 거 샀냐고?","JUA",78,"WHITE"],["설명란 링크 ㄱ","BLACK",112,"YEL"]]}
+        {"dur":3.2,"bg":"NAVY","anim":"shake","sfx":"ding","lines":[["이 샤워기 어디 거?","JUA",76,"WHITE"],["아래 링크 콕!","BLACK",118,"YEL"]]}
       ]
     },
     "5구독료": {
@@ -68,7 +68,7 @@
         {"dur":2.2,"bg":"NAVY","anim":"pop","lines":[["근데 이거 하나","JUA",80,"BLUE_LT"],["생기고 나서","BLACK",118,"WHITE"]]},
         {"dur":3.6,"bg":"CREAM","anim":"slideup","lines":[["그릇 기름 먼저","JUA",82,"INK"],["쓱- 밀어버리면","BLACK",100,"NAVY"],["설거지 반으로","DOH",86,"GREEN"]]},
         {"dur":2.8,"bg":"GREEN","anim":"pop","sfx":"ding","lines":[["몇 천원인데","JUA",82,"WHITE"],["수세미·세제 아낌","BLACK",108,"YEL"]]},
-        {"dur":3.0,"bg":"NAVY","anim":"shake","sfx":"ding","lines":[["어디서 샀냐고?","JUA",78,"WHITE"],["설명란 링크 ㄱ","BLACK",112,"YEL"]]}
+        {"dur":3.2,"bg":"NAVY","anim":"shake","sfx":"ding","lines":[["이게 몇 천원이라고?","JUA",72,"WHITE"],["아래 링크 콕!","BLACK",116,"YEL"]]}
       ]
     },
     "7극세사": {
@@ -79,7 +79,7 @@
         {"dur":2.2,"bg":"NAVY","anim":"pop","lines":[["극세사 한 장으로","JUA",78,"BLUE_LT"],["끝났다","BLACK",128,"WHITE"]]},
         {"dur":3.6,"bg":"CREAM","anim":"slideup","lines":[["물만 묻혀 쓱","JUA",82,"INK"],["세제도 필요 없고","BLACK",92,"NAVY"],["자국 0","DOH",90,"GREEN"]]},
         {"dur":2.8,"bg":"GREEN","anim":"pop","sfx":"ding","lines":[["몇 장에 몇 천원","JUA",80,"WHITE"],["빨아서 반영구","BLACK",110,"YEL"]]},
-        {"dur":3.0,"bg":"NAVY","anim":"shake","sfx":"ding","lines":[["어디서 샀냐고?","JUA",78,"WHITE"],["설명란 링크 ㄱ","BLACK",112,"YEL"]]}
+        {"dur":3.2,"bg":"NAVY","anim":"shake","sfx":"ding","lines":[["장바구니 1순위 등극","JUA",70,"WHITE"],["아래 링크 콕!","BLACK",116,"YEL"]]}
       ]
     },
     "8베이킹소다": {
@@ -90,7 +90,7 @@
         {"dur":2.2,"bg":"NAVY","anim":"pop","lines":[["베이킹소다","JUA",80,"BLUE_LT"],["하나면 끝","BLACK",128,"WHITE"]]},
         {"dur":3.6,"bg":"CREAM","anim":"slideup","lines":[["주방·화장실","JUA",84,"INK"],["냄새·기름때까지","BLACK",92,"NAVY"],["만능 청소","DOH",90,"GREEN"]]},
         {"dur":2.8,"bg":"GREEN","anim":"pop","sfx":"ding","lines":[["한 통에 몇 천원","JUA",80,"WHITE"],["몇 달을 씀","BLACK",116,"YEL"]]},
-        {"dur":3.0,"bg":"NAVY","anim":"shake","sfx":"ding","lines":[["어디서 샀냐고?","JUA",78,"WHITE"],["설명란 링크 ㄱ","BLACK",112,"YEL"]]}
+        {"dur":3.2,"bg":"NAVY","anim":"shake","sfx":"ding","lines":[["세제값 굿바이 하자","JUA",72,"WHITE"],["아래 링크 콕!","BLACK",116,"YEL"]]}
       ]
     }
   }
