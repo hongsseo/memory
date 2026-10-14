@@ -1,5 +1,5 @@
 {
-  "_note": "오늘살림 상황극 숏츠 대본. 비트별 dur(초)·bg(색)·anim(pop/slideup/shake)·sfx(pop/pop_soft/boing/ding, 생략시 anim으로 자동)·lines[[텍스트,폰트,크기,색]]. 폰트: BLACK(초굵)·JUA(둥근)·DOH(단단)·GAEGU(손글씨). 색: CREAM/NAVY/RED/YEL/GREEN/INK/WHITE/GRAY/BLUE_LT. 화면 텍스트엔 이모지 금지(렌더 깨짐). product=true면 쿠팡 고지 인트로 자동.",
+  "_note": "오늘살림 상황극 숏츠 대본. 비트별 dur(초)·bg·anim(pop/slideup/shake)·sfx·lines[[텍스트,폰트,크기,색]]. 폰트 BLACK/JUA/DOH/GAEGU. 색 CREAM/NAVY/RED/YEL/GREEN/INK/WHITE/GRAY/BLUE_LT. product=true면 쿠팡 고지 인트로 자동. 상품 숏츠는 전환구조: 고통→증폭→해결(제품)→근거→CTA.",
   "skits": {
     "1전기세": {
       "product": false,
@@ -40,12 +40,12 @@
     "4절수": {
       "product": true,
       "beats": [
-        {"dur":2.6,"bg":"YEL","anim":"pop","lines":[["수도세 고지서 보고","DOH",74,"INK"],["샤워기 바꾼 썰","BLACK",116,"NAVY"]]},
-        {"dur":2.6,"bg":"CREAM","anim":"slideup","lines":[["수압 세게 쓰는 거","JUA",84,"INK"],["= 물값 폭탄 ㅠ","JUA",84,"RED"]]},
-        {"dur":2.4,"bg":"NAVY","anim":"pop","lines":[["절수 샤워헤드","BLACK",118,"WHITE"],["써봤더니","JUA",80,"BLUE_LT"]]},
-        {"dur":4.0,"bg":"CREAM","anim":"slideup","lines":[["공기 섞어서","JUA",78,"INK"],["수압 그대로, 물량만 ↓","JUA",68,"NAVY"],["체감 차이 없음","DOH",80,"GREEN"]]},
-        {"dur":3.2,"bg":"GREEN","anim":"pop","sfx":"ding","lines":[["수도세 30% 절약","BLACK",112,"YEL"],["3천원대 본전 금방","JUA",70,"WHITE"]]},
-        {"dur":2.8,"bg":"NAVY","anim":"pop","lines":[["프로필 '살림템 모음'","JUA",72,"WHITE"],["에 링크 있어요","BLACK",104,"YEL"]]}
+        {"dur":2.6,"bg":"YEL","anim":"pop","lines":[["수도세 고지서 보고","DOH",74,"INK"],["입 틀어막은 썰","BLACK",116,"NAVY"]]},
+        {"dur":2.8,"bg":"CREAM","anim":"slideup","lines":[["샤워할 때마다","JUA",86,"INK"],["돈이 콸콸 새는 중…","JUA",82,"RED"]]},
+        {"dur":2.2,"bg":"NAVY","anim":"pop","lines":[["근데 샤워기만","JUA",80,"BLUE_LT"],["바꿨더니?!","BLACK",128,"WHITE"]]},
+        {"dur":3.8,"bg":"CREAM","anim":"slideup","lines":[["수압은 그대로","JUA",80,"INK"],["물값은 30% ↓","BLACK",100,"NAVY"],["체감 차이 0","DOH",84,"GREEN"]]},
+        {"dur":2.8,"bg":"GREEN","anim":"pop","sfx":"ding","lines":[["3천원대인데","JUA",80,"WHITE"],["몇 달이면 본전","BLACK",118,"YEL"]]},
+        {"dur":3.0,"bg":"NAVY","anim":"shake","sfx":"ding","lines":[["어떤 거 샀냐고?","JUA",78,"WHITE"],["설명란 링크 ㄱ","BLACK",112,"YEL"]]}
       ]
     },
     "5구독료": {
@@ -58,6 +58,39 @@
         {"dur":4.2,"bg":"CREAM","anim":"slideup","lines":[["무료체험 종료일만","JUA",78,"INK"],["캘린더에 적어둬도","JUA",78,"INK"],["자동결제 방어 끝","DOH",84,"GREEN"]]},
         {"dur":2.8,"bg":"GREEN","anim":"pop","sfx":"ding","lines":[["오늘 하나만","JUA",86,"WHITE"],["정리하기","BLACK",128,"YEL"]]},
         {"dur":2.6,"bg":"NAVY","anim":"pop","lines":[["내 숨은 구독","JUA",80,"WHITE"],["댓글에 고백 ㄱ","BLACK",122,"YEL"]]}
+      ]
+    },
+    "6실리콘스크래퍼": {
+      "product": true,
+      "beats": [
+        {"dur":2.6,"bg":"YEL","anim":"pop","lines":[["설거지할 때마다","DOH",76,"INK"],["기름때랑 전쟁한 썰","BLACK",108,"NAVY"]]},
+        {"dur":2.8,"bg":"CREAM","anim":"slideup","lines":[["수세미에 기름 다 묻고","JUA",76,"INK"],["설거지 2배로 늘고…","JUA",80,"RED"]]},
+        {"dur":2.2,"bg":"NAVY","anim":"pop","lines":[["근데 이거 하나","JUA",80,"BLUE_LT"],["생기고 나서","BLACK",118,"WHITE"]]},
+        {"dur":3.6,"bg":"CREAM","anim":"slideup","lines":[["그릇 기름 먼저","JUA",82,"INK"],["쓱- 밀어버리면","BLACK",100,"NAVY"],["설거지 반으로","DOH",86,"GREEN"]]},
+        {"dur":2.8,"bg":"GREEN","anim":"pop","sfx":"ding","lines":[["몇 천원인데","JUA",82,"WHITE"],["수세미·세제 아낌","BLACK",108,"YEL"]]},
+        {"dur":3.0,"bg":"NAVY","anim":"shake","sfx":"ding","lines":[["어디서 샀냐고?","JUA",78,"WHITE"],["설명란 링크 ㄱ","BLACK",112,"YEL"]]}
+      ]
+    },
+    "7극세사": {
+      "product": true,
+      "beats": [
+        {"dur":2.6,"bg":"YEL","anim":"pop","lines":[["청소 다 하고도","DOH",78,"INK"],["물자국에 빡친 썰","BLACK",112,"NAVY"]]},
+        {"dur":2.8,"bg":"CREAM","anim":"slideup","lines":[["유리·거울 닦으면","JUA",82,"INK"],["얼룩 더 생기고…","JUA",82,"RED"]]},
+        {"dur":2.2,"bg":"NAVY","anim":"pop","lines":[["극세사 한 장으로","JUA",78,"BLUE_LT"],["끝났다","BLACK",128,"WHITE"]]},
+        {"dur":3.6,"bg":"CREAM","anim":"slideup","lines":[["물만 묻혀 쓱","JUA",82,"INK"],["세제도 필요 없고","BLACK",92,"NAVY"],["자국 0","DOH",90,"GREEN"]]},
+        {"dur":2.8,"bg":"GREEN","anim":"pop","sfx":"ding","lines":[["몇 장에 몇 천원","JUA",80,"WHITE"],["빨아서 반영구","BLACK",110,"YEL"]]},
+        {"dur":3.0,"bg":"NAVY","anim":"shake","sfx":"ding","lines":[["어디서 샀냐고?","JUA",78,"WHITE"],["설명란 링크 ㄱ","BLACK",112,"YEL"]]}
+      ]
+    },
+    "8베이킹소다": {
+      "product": true,
+      "beats": [
+        {"dur":2.6,"bg":"YEL","anim":"pop","lines":[["집안 찌든때","DOH",80,"INK"],["이거로 다 녹인 썰","BLACK",112,"NAVY"]]},
+        {"dur":2.8,"bg":"CREAM","anim":"slideup","lines":[["비싼 세제 종류별로","JUA",80,"INK"],["사다 돈 날리던 나…","JUA",80,"RED"]]},
+        {"dur":2.2,"bg":"NAVY","anim":"pop","lines":[["베이킹소다","JUA",80,"BLUE_LT"],["하나면 끝","BLACK",128,"WHITE"]]},
+        {"dur":3.6,"bg":"CREAM","anim":"slideup","lines":[["주방·화장실","JUA",84,"INK"],["냄새·기름때까지","BLACK",92,"NAVY"],["만능 청소","DOH",90,"GREEN"]]},
+        {"dur":2.8,"bg":"GREEN","anim":"pop","sfx":"ding","lines":[["한 통에 몇 천원","JUA",80,"WHITE"],["몇 달을 씀","BLACK",116,"YEL"]]},
+        {"dur":3.0,"bg":"NAVY","anim":"shake","sfx":"ding","lines":[["어디서 샀냐고?","JUA",78,"WHITE"],["설명란 링크 ㄱ","BLACK",112,"YEL"]]}
       ]
     }
   }
