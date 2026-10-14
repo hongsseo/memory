@@ -1,6 +1,6 @@
 {
   "apiVersion": "v21.0",
-  "publicVideoBase": "https://cdn.jsdelivr.net/gh/hongsseo/memory@6923f47458b0949b0201fabf43ae22d2bf162c5b/shorts/videos",
+  "publicVideoBase": "https://cdn.jsdelivr.net/gh/hongsseo/memory@1d214cb4bab3da495e81568fd90e6013fed2920a/shorts/videos",
   "localVideoDir": "../shorts/out",
   "ig":      { "accessToken": "IG_장기토큰", "igUserId": "IG_사용자ID(숫자)" },
   "threads": { "accessToken": "TH_장기토큰", "threadsUserId": "TH_사용자ID(숫자)" },
