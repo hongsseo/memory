@@ -20,3 +20,4 @@ automation/urls.txt
 autopost/config.json
 autopost/posted.json
 autopost/run.log
+shorts/out/
